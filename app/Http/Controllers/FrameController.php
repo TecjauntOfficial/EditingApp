@@ -12,7 +12,7 @@ class FrameController extends Controller
     public function CreateFrames(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'category_id' => 'required',
+            'category_id' => 'required|exists',
             'frame_img' => 'required|array|min:1',
             'frame_img.*' => 'image|mimes:jpeg,png,jpg,gif,svg'
         ]);

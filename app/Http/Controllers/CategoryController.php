@@ -13,6 +13,7 @@ class CategoryController extends Controller
             'name' => 'required',
             'date' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'required|in:0,1'
         ]);
 
 
@@ -37,8 +38,8 @@ class CategoryController extends Controller
                     'public'
                 );
         }
-
-        $categories->save();
+        $categories->status = $request->status ?? 1;      
+          $categories->save();
 
         return response()->json([
             'status' => 'success',
